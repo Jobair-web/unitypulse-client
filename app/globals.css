@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: false;
+}
+
+@plugin "daisyui/theme" {
+  name: "unitypulse-light";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+  --color-base-100: #ffffff;
+  --color-base-200: #f4f8f5;
+  --color-base-300: #dce8e1;
+  --color-base-content: #10231c;
+  --color-primary: #047857;
+  --color-primary-content: #ffffff;
+  --color-secondary: #0f766e;
+  --color-secondary-content: #ffffff;
+  --color-accent: #f59e0b;
+  --color-accent-content: #451a03;
+  --color-neutral: #1f3a31;
+  --color-neutral-content: #e8f3ee;
+  --color-info: #0369a1;
+  --color-info-content: #ffffff;
+  --color-success: #15803d;
+  --color-success-content: #ffffff;
+  --color-warning: #b45309;
+  --color-warning-content: #ffffff;
+  --color-error: #b91c1c;
+  --color-error-content: #ffffff;
+  --radius-selector: 9999px;
+  --radius-field: 0.75rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "unitypulse-dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: dark;
+  --color-base-100: #12201b;
+  --color-base-200: #0b1512;
+  --color-base-300: #243a33;
+  --color-base-content: #e8f3ee;
+  --color-primary: #34d399;
+  --color-primary-content: #04130d;
+  --color-secondary: #5eead4;
+  --color-secondary-content: #031b17;
+  --color-accent: #fbbf24;
+  --color-accent-content: #2a1500;
+  --color-neutral: #1a2b25;
+  --color-neutral-content: #e8f3ee;
+  --color-info: #38bdf8;
+  --color-info-content: #021a26;
+  --color-success: #4ade80;
+  --color-success-content: #03170a;
+  --color-warning: #fbbf24;
+  --color-warning-content: #2a1500;
+  --color-error: #f87171;
+  --color-error-content: #2a0505;
+  --radius-selector: 9999px;
+  --radius-field: 0.75rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+/* One attribute drives everything: Tailwind `dark:` follows data-theme */
+@custom-variant dark (&:where([data-theme="unitypulse-dark"], [data-theme="unitypulse-dark"] *));
+
+:root,
+[data-theme="unitypulse-light"] {
+  --up-muted: #4b5f57;
+  --up-input-border: #7c968b;
+  --up-shadow-card: 0 1px 2px rgb(16 35 28 / 0.06), 0 6px 20px -6px rgb(16 35 28 / 0.1);
+  --up-shadow-card-hover: 0 2px 4px rgb(16 35 28 / 0.06), 0 18px 36px -12px rgb(4 120 87 / 0.28);
+}
+[data-theme="unitypulse-dark"] {
+  --up-muted: #9db5ab;
+  --up-input-border: #5f7c70;
+  --up-shadow-card: 0 0 0 1px rgb(255 255 255 / 0.06), 0 8px 24px -12px rgb(0 0 0 / 0.6);
+  --up-shadow-card-hover: 0 0 0 1px rgb(52 211 153 / 0.35), 0 18px 40px -14px rgb(0 0 0 / 0.7);
+}
+
+@theme inline {
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--color-base-200);
+  --color-foreground: var(--color-base-content);
+  --color-muted: var(--color-base-300);
+  --color-muted-foreground: var(--up-muted);
+  --color-border: var(--color-base-300);
+  --color-input: var(--up-input-border);
+  --color-ring: var(--color-primary);
+  --shadow-card: var(--up-shadow-card);
+  --shadow-card-hover: var(--up-shadow-card-hover);
+}
+
+@theme {
+  --animate-fade-up: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+  }
+}
+
+/* Hero gradient mesh + dot pattern */
+.bg-mesh {
+  background-image:
+    radial-gradient(60% 50% at 12% 8%, color-mix(in oklab, var(--color-primary) 22%, transparent), transparent 70%),
+    radial-gradient(45% 40% at 92% 18%, color-mix(in oklab, var(--color-accent) 20%, transparent), transparent 70%),
+    radial-gradient(50% 50% at 60% 100%, color-mix(in oklab, var(--color-secondary) 18%, transparent), transparent 70%);
+}
+[data-theme="unitypulse-dark"] .bg-mesh {
+  background-image:
+    radial-gradient(60% 50% at 12% 8%, color-mix(in oklab, var(--color-primary) 14%, transparent), transparent 70%),
+    radial-gradient(45% 40% at 92% 18%, color-mix(in oklab, var(--color-accent) 10%, transparent), transparent 70%),
+    radial-gradient(50% 50% at 60% 100%, color-mix(in oklab, var(--color-secondary) 12%, transparent), transparent 70%);
+}
+.bg-dots {
+  background-image: radial-gradient(color-mix(in oklab, var(--color-base-content) 14%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 75%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
